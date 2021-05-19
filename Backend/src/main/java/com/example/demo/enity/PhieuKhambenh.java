@@ -1,6 +1,8 @@
 package com.example.demo.enity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -28,7 +30,7 @@ public class PhieuKhambenh {
     private BenhNhan benhnhan;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn
     private DonThuoc donthuoc;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "phieukhambenh")
@@ -37,8 +39,9 @@ public class PhieuKhambenh {
 
     private Float tienKham;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "phieukhambenh", cascade = CascadeType.ALL)
+    @JsonIgnore
     private HoaDon hoadon;
 
     public long getId() {

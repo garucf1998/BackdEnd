@@ -8,19 +8,30 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "hoadon")
 public class HoaDon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private Float tongTien;
 	@OneToOne
-	@MapsId
 	@JoinColumn
 	private PhieuKhambenh phieukhambenh;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date ngayTao;
+
+	private boolean trangThai;
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
 	public long getId() {
 		return id;
 	}

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.enity.HoaDon;
 import com.example.demo.enity.PhieuDichVu;
 import com.example.demo.repository.PhieuDichVuRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -39,7 +40,7 @@ public class PhieuDichVuController{
         phieuDichVu.setDichVu(phieuDichVuDetail.getDichVu());
         phieuDichVu.setGhiChu(phieuDichVuDetail.getGhiChu());
         phieuDichVu.setKetLuan(phieuDichVuDetail.getKetLuan());
-        phieuDichVu.setPhoto(phieuDichVuDetail.getPhoto());
+        phieuDichVu.setGiaTienDV(phieuDichVuDetail.getGiaTienDV());
         phieuDichVu.setPhieukhambenh(phieuDichVuDetail.getPhieukhambenh());
         final PhieuDichVu updated = dichVuRepository.save(phieuDichVu);
         return ResponseEntity.ok(updated);
@@ -60,5 +61,10 @@ public class PhieuDichVuController{
     @PostMapping("/insert")
     public PhieuDichVu them( @RequestBody PhieuDichVu phieuDichVu) {
         return dichVuRepository.save(phieuDichVu);
+    }
+
+    @GetMapping("/getPhieuDichVuByPhieuKhamBenh/{id}")
+    public List<PhieuDichVu> getPhieuDichVuByPhieuKhamBenh(@PathVariable("id") Long id) {
+        return dichVuRepository.findListPhieuDichVuByPhieuKhamBenh(id);
     }
 }

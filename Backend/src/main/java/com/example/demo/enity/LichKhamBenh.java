@@ -13,13 +13,13 @@ public class LichKhamBenh {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayLap;
-    @ManyToOne
+    @OneToOne
     @JoinColumn
     private NhanVien nhanvien;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "lichkhambenh")
-    @JsonIgnore
+
     private List<BenhNhan>dsbenhnhan;
 
     private int doUuTien;

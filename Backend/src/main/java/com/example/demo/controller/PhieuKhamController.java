@@ -4,6 +4,7 @@ import com.example.demo.enity.PhieuKhambenh;
 import com.example.demo.repository.PhieuKhamRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,12 @@ public class PhieuKhamController {
     public List<PhieuKhambenh> GetAll(){
         return phieuKhamRepository.findAll();
     }
+
+    @GetMapping("/getphieukhambybenhnhanid/{id}")
+    public List<PhieuKhambenh> GetAllPhieuKhamByBenhNhanId(@PathVariable(value = "id") Long id){
+        return phieuKhamRepository.findPhieuKhamByIdBenhNhan(id);
+    }
+
 
     @GetMapping("/getone/{id}")
     public ResponseEntity<PhieuKhambenh> getById(@PathVariable(value = "id") Long id)
@@ -62,8 +69,8 @@ public class PhieuKhamController {
         return response;
     }
 
-    @PostMapping("/insert")
-    public PhieuKhambenh them( @RequestBody PhieuKhambenh phieuKhambenh) {
+    @PostMapping(value = "/insert",produces = MediaType.APPLICATION_JSON_VALUE)
+    public PhieuKhambenh them(@RequestBody PhieuKhambenh phieuKhambenh) {
         return phieuKhamRepository.save(phieuKhambenh);
     }
 

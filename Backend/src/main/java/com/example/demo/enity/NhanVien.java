@@ -45,7 +45,7 @@ public class NhanVien {
 	private List <LichHen> dslichhen;
 
 	@OneToOne
-	@PrimaryKeyJoinColumn
+	@JsonIgnore
 	private LichKhamBenh lichkhambenh;
 
 	public String getEmail() {

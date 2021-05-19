@@ -11,14 +11,14 @@ public class LichHen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long maLichHen;
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date thoiGian;
     @Column(name = "TrieuChung")
     private String trieuChung;
     @Column(name = "GhiChu")
     private String ghiChu;
-    ////
+   // private boolean hinhThuc;
     @ManyToOne
     @JoinColumn
     private BenhNhan benhnhan;
@@ -26,6 +26,14 @@ public class LichHen {
     @ManyToOne
     @JoinColumn
     private NhanVien nhanvien;
+
+//    public boolean isHinhThuc() {
+//        return hinhThuc;
+//    }
+//
+//    public void setHinhThuc(boolean hinhThuc) {
+//        this.hinhThuc = hinhThuc;
+//    }
 
     public Long getMaLichHen() {
         return maLichHen;

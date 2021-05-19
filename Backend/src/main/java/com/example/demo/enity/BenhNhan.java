@@ -45,6 +45,7 @@ public class BenhNhan {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private LichKhamBenh lichkhambenh;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "benhnhan")

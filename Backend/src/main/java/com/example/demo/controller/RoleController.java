@@ -28,4 +28,9 @@ public class RoleController {
     public List<Role> getAllEmployees() {
         return roleRepository.findAll();
     }
+    @PostMapping("/them")
+    public Role create(@RequestBody Role role) {
+        return roleRepository.save(role);
+    }
+
 }

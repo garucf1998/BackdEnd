@@ -1,6 +1,8 @@
 package com.example.demo.enity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -10,22 +12,26 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+
 public class DonThuoc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date ngayLapDon;
+
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "donthuoc")
 	@JsonIgnore
 	private List<ChiTietDonThuoc> dsChiTietDonThuoc;
 
-	@OneToOne
-	@MapsId
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "donthuoc", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private PhieuKhambenh phieukhambenh;
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private Date ngayLapDon;
+
 	public long getId() {
 		return id;
 	}

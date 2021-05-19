@@ -1,5 +1,6 @@
 package com.example.demo.enity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -24,14 +25,14 @@ public class PhieuDichVu {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date ngayTaoPhieu;
-	private String photo;
+	private Float giaTienDV;
 
-	public String getPhoto() {
-		return photo;
+	public Float getGiaTienDV() {
+		return giaTienDV;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setGiaTienDV(Float giaTienDV) {
+		this.giaTienDV = giaTienDV;
 	}
 
 	public PhieuKhambenh getPhieukhambenh() {
