@@ -412,7 +412,7 @@ public class GUIThongTinBenhNhan extends JFrame implements MouseListener,ActionL
 		btnluu.setEnabled(false);
 		btnsua.setEnabled(false);
 		
-		
+		updateTableData();
 		
 		
 	}
@@ -660,16 +660,19 @@ public class GUIThongTinBenhNhan extends JFrame implements MouseListener,ActionL
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (BenhNhan bn : list) {
-			
-			String gioitinh="";
-			if(bn.isGioiTinh()){
-				gioitinh="Nam";
+		if(list.get(0)!=null)
+		{
+			for (BenhNhan bn : list) {
+				
+				String gioitinh="";
+				if(bn.isGioiTinh()){
+					gioitinh="Nam";
+				}
+				else
+					gioitinh="Nữ";
+				String[] rowdata = {String.valueOf(bn.getId()).toString(),bn.getTen(),gioitinh,bn.getSoDienThoai(),bn.getCmnd(),bn.getDiaChi(),control.doichuoitungay(bn.getNgaySinh()),bn.getEmail()};
+				datamodel.addRow(rowdata);
 			}
-			else
-				gioitinh="Nữ";
-			String[] rowdata = {String.valueOf(bn.getId()).toString(),bn.getTen(),gioitinh,bn.getSoDienThoai(),bn.getCmnd(),bn.getDiaChi(),control.doichuoitungay(bn.getNgaySinh()),bn.getEmail()};
-			datamodel.addRow(rowdata);
 		}
 	}
 	public void removeTable() {

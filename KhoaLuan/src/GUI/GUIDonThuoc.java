@@ -45,12 +45,14 @@ import javax.swing.table.DefaultTableModel;
 import Service.ChiTietDonThuocService;
 import Service.DonThuocService;
 import Service.HoaDonService;
+import Service.LichHenService;
 import Service.PhieuDichVuService;
 import Service.PhieuKhamService;
 import Service.ThuocService;
 import enity.ChiTietDonThuoc;
 import enity.DonThuoc;
 import enity.HoaDon;
+import enity.LichHen;
 import enity.NhanVien;
 import enity.PhieuKhambenh;
 import enity.TaiKhoan;
@@ -73,12 +75,14 @@ public class GUIDonThuoc extends JFrame implements ActionListener,MouseListener{
 	private Thuoc mThuoc;
 	private TaiKhoan mTaiKhoan;
 	private NhanVien mNhanVien;
+	private LichHen mLichHen;
 	
 	private ThuocService thuocService;
 	private ChiTietDonThuocService chiTietDonThuocService;
 	private DonThuocService donThuocService;
 	private PhieuKhamService phieuKhamService;
 	private HoaDonService hoaDonService;
+	private LichHenService lichHenService;
 	private PhieuDichVuService phieuDichVuService;
 	
 	private DonThuoc dt,dtpost;
@@ -87,18 +91,15 @@ public class GUIDonThuoc extends JFrame implements ActionListener,MouseListener{
 	
 
 	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
 	 * Create the frame.
 	 */
-	public GUIDonThuoc(PhieuKhambenh phieukhambenh,TaiKhoan taikhoan,NhanVien nhanvien) {
+	public GUIDonThuoc(PhieuKhambenh phieukhambenh,TaiKhoan taikhoan,NhanVien nhanvien,LichHen lichhen) {
 		this.mPhieuKhamBenh=phieukhambenh;
 		this.mNhanVien=nhanvien;
 		this.mTaiKhoan=taikhoan;
+		this.mLichHen=lichhen;
 		this.thuocService=new ThuocService();
+		this.lichHenService=new LichHenService();
 		this.chiTietDonThuocService=new ChiTietDonThuocService();
 		this.donThuocService=new DonThuocService();
 		this.phieuKhamService= new PhieuKhamService();
@@ -275,6 +276,7 @@ public class GUIDonThuoc extends JFrame implements ActionListener,MouseListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
+		int ketquapostHD=0;
 		
 		int ketqua=0;
 		if(o==btnhuy)
@@ -336,7 +338,7 @@ public class GUIDonThuoc extends JFrame implements ActionListener,MouseListener{
 				try {
 					if(phieuDichVuService.GetAllDichVuByPhieuKham(mPhieuKhamBenh.getId()).size()!=0) {
 						for(int i=0;i<phieuDichVuService.GetAllDichVuByPhieuKham(mPhieuKhamBenh.getId()).size();i++)
-							giaTien+=(float) phieuDichVuService.GetAllDichVuByPhieuKham(mPhieuKhamBenh.getId()).get(i).getDonGia();
+							giaTien+=(float) phieuDichVuService.GetAllDichVuByPhieuKham(mPhieuKhamBenh.getId()).get(i).getGiaTienDV();
 					}
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
@@ -344,15 +346,25 @@ public class GUIDonThuoc extends JFrame implements ActionListener,MouseListener{
 				}
 				hd.setTongTien(mPhieuKhamBenh.getTienKham()+giaTien);
 				try {
-					int ketquapostHD=hoaDonService.POSTHoaDon(hd);
+					ketquapostHD=hoaDonService.POSTHoaDon(hd);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(this,"Bạn vừa lưu phiếu khám bệnh thành công !","Chú ý",JOptionPane.CLOSED_OPTION);
-				dispose();
-				GUIChucNang cn=new GUIChucNang(mTaiKhoan,mNhanVien);
-				cn.setVisible(true);
+				if(ketquapostHD==200) {
+					mLichHen.setTrangThai("2");
+					try {
+						int PUT = lichHenService.PUTLichHen(mLichHen);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					JOptionPane.showMessageDialog(this,"Bạn vừa lưu phiếu khám bệnh thành công !","Chú ý",JOptionPane.CLOSED_OPTION);
+					dispose();
+					GUIChucNang cn=new GUIChucNang(mTaiKhoan,mNhanVien);
+					cn.setVisible(true);
+				}
+				
 			}
 		}
 		

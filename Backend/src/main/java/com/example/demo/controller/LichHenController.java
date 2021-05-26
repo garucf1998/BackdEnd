@@ -67,4 +67,14 @@ public class LichHenController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<LichHen> update(@PathVariable(value = "id") Long id,
+                                           @RequestBody LichHen lichhendetail) throws ResourceNotFoundException {
+        LichHen lichHen =lichHenRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
+        lichHen.setTrangThai(lichhendetail.getTrangThai());
+
+        final LichHen updated = lichHenRepository.save(lichHen);
+        return ResponseEntity.ok(updated);
+    }
 }

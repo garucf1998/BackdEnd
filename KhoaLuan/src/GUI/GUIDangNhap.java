@@ -189,10 +189,14 @@ public class GUIDangNhap extends JFrame {
 			}
 			if(i==0)
 			{
-				JOptionPane.showConfirmDialog(this	,	 "Sai tài khoản mật khẩu","Chú ý",JOptionPane.CANCEL_OPTION);
+				JOptionPane.showConfirmDialog(this	,	 "Sai tài khoản mật khẩu","Chú ý",JOptionPane.CLOSED_OPTION);
 				txttaiKhoan.requestFocus();
 			}
-			else
+			else if(taiKhoan.getRole().getName().equals("Bệnh Nhân"))
+			{
+				JOptionPane.showConfirmDialog(this	,	 "Bạn không phải là nhân viên phòng khám. Vui lòng đăng nhập lại !","Chú ý",JOptionPane.CLOSED_OPTION);
+				txttaiKhoan.requestFocus();
+			}else
 			{
 				dispose();
 				GUIChucNang ft= new GUIChucNang(taiKhoan,nhanvien);

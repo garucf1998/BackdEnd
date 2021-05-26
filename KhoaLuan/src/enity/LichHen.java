@@ -7,11 +7,30 @@ public class LichHen {
     private Date thoiGian;
     private String trieuChung;
     private String ghiChu;
-    private BenhNhan benhnhan;
+    private String trangThai;
+    private boolean hinhThuc;
+    private BenhNhan benhNhan;
 
    private NhanVien nhanvien;
 
-    public Long getMaLichHen() {
+    public String getTrangThai() {
+	return trangThai;
+}
+
+public void setTrangThai(String trangThai) {
+	this.trangThai = trangThai;
+}
+
+public boolean isHinhThuc() {
+	return hinhThuc;
+}
+
+public void setHinhThuc(boolean hinhThuc) {
+	this.hinhThuc = hinhThuc;
+}
+
+
+public Long getMaLichHen() {
         return maLichHen;
     }
 
@@ -43,22 +62,25 @@ public class LichHen {
         this.ghiChu = ghiChu;
     }
 
+    
     public BenhNhan getBenhNhan() {
-        return benhnhan;
-    }
+		return benhNhan;
+	}
 
-    public void setBenhNhan(BenhNhan benhNhan) {
-        this.benhnhan = benhNhan;
-    }
+	public void setBenhNhan(BenhNhan benhNhan) {
+		this.benhNhan = benhNhan;
+	}
 
-    public NhanVien getNhanVien() {
-        return nhanvien;
-    }
+	
 
-    public void setNhanVien(NhanVien nhanvien) {
-        this.nhanvien = nhanvien;
-    }
+	public NhanVien getNhanvien() {
+		return nhanvien;
+	}
 
-    public LichHen() {
+	public void setNhanvien(NhanVien nhanvien) {
+		this.nhanvien = nhanvien;
+	}
+
+	public LichHen() {
     }
 }

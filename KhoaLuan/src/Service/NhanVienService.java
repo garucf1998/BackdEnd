@@ -41,6 +41,7 @@ public class NhanVienService {
 	static String GET_NHAN_VIEN_THEO_TAI_KHOAN="http://localhost:5001/nhanvien/getbytaikhoan";
 	static String GET_NHAN_VIEN_THEO_CMND="http://localhost:5001/nhanvien/getbycmnd";
 	static String GET_ONE_ROLE="http://localhost:5001/role/getone";
+	static String GET_NHAN_VIEN_THEO_ROLE="http://localhost:5001/nhanvien/getbyRole";
 	
 	TaiKhoanService taiKhoanController;
 	
@@ -485,5 +486,45 @@ public class NhanVienService {
 		}
 
 		return bn;
+	}
+	
+	public  List<NhanVien>  GetNHanVienByRole(Long id) throws IOException {
+		List<NhanVien>getall=new ArrayList<>();
+	    URL urlForGetRequest = new URL(GET_NHAN_VIEN_THEO_ROLE+"/"+id);
+	    String readLine = null;
+	    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+	    conection.setRequestMethod("GET"); // set userId its a sample here
+	    conection.setRequestProperty("Content-Type", "application/json");
+	    int responseCode = conection.getResponseCode();
+
+	    if (responseCode == HttpURLConnection.HTTP_OK) {
+	        BufferedReader in = new BufferedReader(
+	            new InputStreamReader(conection.getInputStream()));
+	        String response = new String();
+	        while ((readLine = in .readLine()) != null) {
+	            response+=(readLine);
+	        } in .close();
+	        if(responseCode==200)
+	        {
+	        	Gson gson = new GsonBuilder()
+	        		    .setDateFormat("yyyy-MM-dd")
+	        		    .create();
+		        JsonParser parser = new JsonParser();
+		        JsonArray object = (JsonArray) parser.parse(response);// response will be the json String
+		        NhanVien[] nhanVienList = gson.fromJson(object, NhanVien[].class);
+		        	
+		        for(int i=0;i<nhanVienList.length;i++)
+		        	getall.add(nhanVienList[i]);
+	        }
+	        else
+	        {
+	        	return null;
+	        }
+	        
+	    } else {
+	        System.out.println("GET NOT WORKED");
+	    }
+		return getall;
+
 	}
 }

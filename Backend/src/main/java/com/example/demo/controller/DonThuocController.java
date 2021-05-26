@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.enity.DonThuoc;
-import com.example.demo.enity.LichHen;
-import com.example.demo.enity.Thuoc;
 import com.example.demo.repository.DonThuocRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

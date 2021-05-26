@@ -45,22 +45,24 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Service.BenhNhanService;
+import Service.LichHenService;
 import Service.PhieuKhamService;
 import enity.BenhNhan;
+import enity.LichHen;
 import enity.NhanVien;
 import enity.PhieuKhambenh;
 import enity.TaiKhoan;
 
 public class GUICapNhatPhieuKham extends JFrame implements ActionListener,MouseListener{
 	private JPanel contentPane;
-	private JComponent menuBar;
-	private JMenu mnFile;
-	private JMenu mnEdit;
-	private JMenu mnHelp;
+
 	
 	private TaiKhoan mTaiKhoan;
 	private NhanVien mNhanVien;
 	private BenhNhan mBenhNhan;
+	private LichHen mLichHen;
+	
+	private LichHenService lichHenService;
 	private PhieuKhamService phieuKhamService;
 	private BenhNhanService benhnhanservice;
 	
@@ -99,6 +101,8 @@ public class GUICapNhatPhieuKham extends JFrame implements ActionListener,MouseL
 		this.mNhanVien=nhanvien;
 		this.benhnhanservice=new BenhNhanService();
 		this.phieuKhamService=new PhieuKhamService();
+		this.lichHenService=new LichHenService();
+		
 		this.pkb=null;
 		this.pkketqua=new PhieuKhambenh();
 		
@@ -108,17 +112,7 @@ public class GUICapNhatPhieuKham extends JFrame implements ActionListener,MouseL
 		setBounds(100, 100, 1177, 700);
 		setLocationRelativeTo(null);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
 		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
-		JMenuItem mntmngXut = new JMenuItem("Đăng Xuất");
-		mnFile.add(mntmngXut);
-		
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnFile.add(mntmExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -414,8 +408,14 @@ public class GUICapNhatPhieuKham extends JFrame implements ActionListener,MouseL
 							e1.printStackTrace();
 						}
 						
+						try {
+							mLichHen=lichHenService.GetLichHenBenhNhan(benhnhanservice.doichuoitungay(java.util.Calendar.getInstance().getTime()), mBenhNhan.getId());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						dispose();
-						GUIDonThuoc ft= new GUIDonThuoc(pkketqua,mTaiKhoan,mNhanVien);
+						GUIDonThuoc ft= new GUIDonThuoc(pkketqua,mTaiKhoan,mNhanVien,mLichHen);
 						ft.setVisible(true);
 					}
 				else 

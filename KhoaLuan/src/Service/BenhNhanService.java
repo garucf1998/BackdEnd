@@ -43,6 +43,7 @@ public class BenhNhanService {
 	static String GET_BENH_NHAN_THEO_TEN="http://localhost:5001/benhnhan/getbyname";
 	static String GET_BENH_NHAN_THEO_SDT="http://localhost:5001/benhnhan/getbysdt";
 	static String GET_BENH_NHAN_THEO_CMND="http://localhost:5001/benhnhan/getbycmnd";
+	static String GET_BENH_NHAN_THEO_USERNAME="http://localhost:5001/benhnhan/getbytaikhoan";
 	static String POST_BENH_NHAN="http://localhost:5001/benhnhan/insert";
 	static String GET_ONE_ROLE="http://localhost:5001/role/getone/5";
 	static String GET_BENH_NHAN_BY_LICH_HEN="http://localhost:5001/lichhen/getlichhen";
@@ -511,4 +512,34 @@ public class BenhNhanService {
 	}
 	//[END GetALL]
 	
+	public BenhNhan GetOneBenhNhanByUser(String user) throws IOException {
+		BenhNhan bn=new BenhNhan();
+		URL urlForGetRequest = new URL(GET_BENH_NHAN_THEO_USERNAME+"/"+user);
+		String readLine = null;
+		HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+		conection.setRequestMethod("GET"); // set userId its a sample here
+		conection.setRequestProperty("Content-Type", "application/json");
+		int responseCode = conection.getResponseCode();
+
+
+		if (responseCode == HttpURLConnection.HTTP_OK) {
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(conection.getInputStream()));
+			String response = new String();
+			while ((readLine = in .readLine()) != null) {
+				response+=(readLine);
+			} in .close();
+			
+			Gson gson = new GsonBuilder()
+        		    .setDateFormat("yyyy-MM-dd")
+        		    .create();
+			bn = gson.fromJson(response, BenhNhan.class);
+
+			
+		} else {
+			System.out.println("GET NOT WORKED");
+		}
+
+		return bn;
+	}
 }

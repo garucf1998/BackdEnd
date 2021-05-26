@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface HoaDonRepository extends JpaRepository<HoaDon,Long> {
-    @Query(value = "select * from hoadon join phieu_khambenh on hoadon.phieukhambenh_id=phieu_khambenh.id join benh_nhan on benh_nhan.id=phieu_khambenh.benhnhan_id where hoadon.trang_thai='0' and phieu_khambenh.benhnhan_id like ?1",nativeQuery = true)
+    @Query(value = "select * from hoadon join phieu_khambenh on hoadon.phieukhambenh_id=phieu_khambenh.id join benh_nhan on benh_nhan.id=phieu_khambenh.benhnhan_id where  phieu_khambenh.benhnhan_id like ?1",nativeQuery = true)
     List<HoaDon> findListHoaDonChuaThanhToan(Long idbn);
 }

@@ -14,24 +14,16 @@ import java.util.List;
 public class BenhNhan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private long id;
-    @NotNull
     private String ten;
-    @NotNull
     private String diaChi;
-    @NotNull
     private String cmnd;
-    @NotNull
     @Email
     private String email;
-    @NotNull
     private boolean gioiTinh;
-    @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngaySinh;
-    @NotNull
     @NumberFormat
     private String soDienThoai;
 
@@ -43,10 +35,6 @@ public class BenhNhan {
     @JsonIgnore
     private List<PhieuKhambenh> dsphieukhambenh;
 
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnore
-    private LichKhamBenh lichkhambenh;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "benhnhan")
     @JsonIgnore
@@ -130,14 +118,6 @@ public class BenhNhan {
 
     public void setDsphieukhambenh(List<PhieuKhambenh> dsphieukhambenh) {
         this.dsphieukhambenh = dsphieukhambenh;
-    }
-
-    public LichKhamBenh getLichkhambenh() {
-        return lichkhambenh;
-    }
-
-    public void setLichkhambenh(LichKhamBenh lichkhambenh) {
-        this.lichkhambenh = lichkhambenh;
     }
 
     public List<LichHen> getDslichhen() {

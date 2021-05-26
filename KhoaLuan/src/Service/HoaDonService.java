@@ -14,11 +14,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
+import enity.DichVu;
 import enity.HoaDon;
+import enity.NhanVien;
 
 public class HoaDonService {
 
 	static String POST_HOA_DON="http://localhost:5001/hoadon/insert";
+	static String GET_ONE_HOA_DON="http://localhost:5001/hoadon/getone";
+	static String PUT_HOA_DON="http://localhost:5001/hoadon/update";
 	static String GET_ALL_HOA_DON_CHUA_THANH_TOAN="http://localhost:5001/hoadon/getHoaDonChuaThanhToan";
 	/**
 	 * @author Vien
@@ -79,7 +83,7 @@ public class HoaDonService {
 	//[START GetAll]
 	public  List<HoaDon>  GetAllHoaDonChuaThanhToan(Long id) throws IOException {
 		List<HoaDon>getall=new ArrayList<>();
-	    URL urlForGetRequest = new URL(GET_ALL_HOA_DON_CHUA_THANH_TOAN);
+	    URL urlForGetRequest = new URL(GET_ALL_HOA_DON_CHUA_THANH_TOAN+"/"+id);
 	    String readLine = null;
 	    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
 	    conection.setRequestMethod("GET"); // set userId its a sample here
@@ -117,4 +121,77 @@ public class HoaDonService {
 
 	}
 	//[END GetALL]
+	
+	public HoaDon GetOneHoaDon(Long id) throws IOException {
+		HoaDon hd=new HoaDon();
+		URL urlForGetRequest = new URL(GET_ONE_HOA_DON+"/"+id);
+		String readLine = null;
+		HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+		conection.setRequestMethod("GET"); // set userId its a sample here
+		conection.setRequestProperty("Content-Type", "application/json");
+		int responseCode = conection.getResponseCode();
+		System.out.println(urlForGetRequest);
+
+		if (responseCode == HttpURLConnection.HTTP_OK) {
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(conection.getInputStream()));
+			String response = new String();
+			while ((readLine = in .readLine()) != null) {
+				response+=(readLine);
+			} in .close();
+			
+			Gson gson = new GsonBuilder()
+        		    .setDateFormat("yyyy-MM-dd")
+        		    .create();
+			hd = gson.fromJson(response, HoaDon.class);
+
+			
+		} else {
+			System.out.println(responseCode);
+		}
+
+		return hd;
+	}
+	
+	public  int PUTHoaDon(HoaDon hd) throws IOException {
+
+		Gson gson = new GsonBuilder()
+    		    .setDateFormat("yyyy-MM-dd")
+    		    .create();
+		String PUT_PARAMS = gson.toJson(hd);
+	    System.out.println(PUT_PARAMS);
+	    URL obj = new URL(PUT_HOA_DON+"/"+hd.getId());
+	    HttpURLConnection putConnection = (HttpURLConnection) obj.openConnection();
+	    putConnection.setRequestMethod("PUT");
+	    putConnection.setRequestProperty("Content-Type", "application/json");
+
+
+	    putConnection.setDoOutput(true);
+	    OutputStream os = putConnection.getOutputStream();
+	    os.write(PUT_PARAMS.getBytes());
+	    os.flush();
+	    os.close();
+
+
+	    int responseCode = putConnection.getResponseCode();
+	    String message=putConnection.getResponseMessage();
+	    
+
+	    if (responseCode == HttpURLConnection.HTTP_CREATED) { //success
+	        BufferedReader in = new BufferedReader(new InputStreamReader(
+	            putConnection.getInputStream()));
+	        String inputLine;
+	        StringBuffer response = new StringBuffer();
+
+	        while ((inputLine = in .readLine()) != null) {
+	            response.append(inputLine);
+	        } in .close();
+
+	        // print result
+	        System.out.println(response.toString());
+	    } else {
+	        System.out.println("PUT NOT WORKED");
+	    }
+	    return responseCode;
+	}
 }

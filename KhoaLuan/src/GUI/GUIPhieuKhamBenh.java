@@ -44,6 +44,7 @@ import Service.BenhNhanService;
 import Service.PhieuKhamService;
 import enity.BenhNhan;
 import enity.DonThuoc;
+import enity.LichHen;
 import enity.NhanVien;
 import enity.PhieuKhambenh;
 import enity.TaiKhoan;
@@ -67,6 +68,8 @@ public class GUIPhieuKhamBenh extends JFrame implements MouseListener,ActionList
 	private TaiKhoan mTaiKhoan;
 	private NhanVien mNhanVien;
 	private BenhNhan mBenhNhan;
+	private LichHen mLichHen;
+	
 	private PhieuKhamService phieuKhamService;
 	private BenhNhanService benhnhanservice;
 	
@@ -94,9 +97,11 @@ public class GUIPhieuKhamBenh extends JFrame implements MouseListener,ActionList
 	/**
 	 * Create the frame.
 	 */
-	public GUIPhieuKhamBenh(TaiKhoan taikhoan,NhanVien nhanvien) {
+	public GUIPhieuKhamBenh(TaiKhoan taikhoan,NhanVien nhanvien, BenhNhan benhnhan,LichHen lichhen) {
 		this.mTaiKhoan=taikhoan;
 		this.mNhanVien=nhanvien;
+		this.mBenhNhan=benhnhan;
+		this.mLichHen=lichhen;
 		this.benhnhanservice=new BenhNhanService();
 		this.phieuKhamService=new PhieuKhamService();
 		
@@ -320,16 +325,12 @@ public class GUIPhieuKhamBenh extends JFrame implements MouseListener,ActionList
 				contentPane.add(btnthem);
 				
 			comboBox.setEnabled(false);
-			tatTrieuChung.setEnabled(false);
-			tatChanDoan.setEnabled(false);
-			rdbhoanthanh.setEnabled(false);
-			rdbchuahoanthanh.setEnabled(false);
-			btnluu.setEnabled(false);
+			
 				
 			btnhuy.addActionListener(this);
 			btnluu.addActionListener(this);
 			btnthem.addActionListener(this);
-			
+			comboBox.setSelectedItem(mBenhNhan.getId());
 	}
 
 
@@ -373,7 +374,7 @@ public class GUIPhieuKhamBenh extends JFrame implements MouseListener,ActionList
 				}
 				
 				dispose();
-				GUIDonThuoc ft= new GUIDonThuoc(pkketqua,mTaiKhoan,mNhanVien);
+				GUIDonThuoc ft= new GUIDonThuoc(pkketqua,mTaiKhoan,mNhanVien,mLichHen);
 				ft.setVisible(true);
 				
 			}
@@ -391,47 +392,11 @@ public class GUIPhieuKhamBenh extends JFrame implements MouseListener,ActionList
 				{
 					JOptionPane.showMessageDialog(this,"Bạn vừa lưu 1 phiếu khám bệnh !","Chú ý",JOptionPane.CLOSED_OPTION);
 					
-					comboBox.setEnabled(false);
-					tatTrieuChung.setEnabled(false);
-					tatChanDoan.setEnabled(false);
-					rdbhoanthanh.setEnabled(false);
-					rdbchuahoanthanh.setEnabled(false);
-					
-					btnthem.setText("Thêm");
-					btnluu.setEnabled(false);
-					
-					removeTable();
-					updateTableData();
+					dispose();
+					GUIChucNang cn= new GUIChucNang(mTaiKhoan, mNhanVien);
+					cn.setVisible(true);
 				}	
 			}	
-		}
-		else if(o==btnthem)
-		{
-			if(btnthem.getText().equals("Thêm"))
-			{
-				comboBox.setEnabled(true);
-				tatTrieuChung.setEnabled(true);
-				tatChanDoan.setEnabled(true);
-				rdbhoanthanh.setEnabled(true);
-				rdbchuahoanthanh.setEnabled(true);
-				
-				
-				btnthem.setText("Hủy");
-				btnluu.setEnabled(true);
-			}
-			else 
-			{
-				comboBox.setEnabled(false);
-				tatTrieuChung.setEnabled(false);
-				tatChanDoan.setEnabled(false);
-				rdbhoanthanh.setEnabled(false);
-				rdbchuahoanthanh.setEnabled(false);
-				
-				
-				btnthem.setText("Thêm");
-				btnluu.setEnabled(false);
-			}
-				
 		}
 	}
 

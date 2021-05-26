@@ -44,9 +44,6 @@ public class NhanVien {
 	@JsonIgnore
 	private List <LichHen> dslichhen;
 
-	@OneToOne
-	@JsonIgnore
-	private LichKhamBenh lichkhambenh;
 
 	public String getEmail() {
 		return email;

@@ -12,7 +12,6 @@ public class TaiKhoan implements Serializable {
 	private String username;
 	@NotNull
 	private String password;
-	private boolean enabled;
 
 
 	@ManyToOne
@@ -20,13 +19,7 @@ public class TaiKhoan implements Serializable {
 	@NotNull
 	private Role role;
 
-	public boolean isEnabled() {
-		return enabled;
-	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
 
 	public Role getRole() {
 		return role;

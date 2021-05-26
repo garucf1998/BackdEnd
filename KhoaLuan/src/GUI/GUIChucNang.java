@@ -31,12 +31,13 @@ import javax.swing.ImageIcon;
 public class GUIChucNang extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JButton btnbutton;
-	private JButton btnbutton1;
-	private JButton btnbutton2;
-	private JButton btnbutton3;
-	private JButton btnbutton4;
-	private JButton btnbutton5;
+	private JButton btnqlnhanvien;
+	private JButton btnqlbenhnhan;
+	private JButton btnLapHoaDon;
+	private JButton btnlapphieukham;
+	private JButton btncapnhatphieukham;
+	private JButton btndatlichkham;
+	private JButton btndoimatkhau,btndangxuat;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenuItem mntmdangXuat;
@@ -46,7 +47,7 @@ public class GUIChucNang extends JFrame implements ActionListener{
 	NhanVien mNhanVien;
 	TaiKhoan mTaiKhoan;
 	
-	private JButton btnxhd;
+	private JButton btnlapphieudichvu;
 	private JLabel lblChucVu;
 
 	/**
@@ -105,37 +106,37 @@ public class GUIChucNang extends JFrame implements ActionListener{
 		lblloaiNhanVien.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(lblloaiNhanVien);
 		
-		btnbutton = new JButton("Quản Lí Nhân Viên");
-		btnbutton.setIcon(new ImageIcon("travel_management.png"));
-		btnbutton.setBounds(67, 128, 275, 100);
-		btnbutton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnqlnhanvien = new JButton("Quản Lí Nhân Viên");
+		btnqlnhanvien.setIcon(new ImageIcon("travel_management.png"));
+		btnqlnhanvien.setBounds(67, 128, 275, 100);
+		btnqlnhanvien.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		contentPane.add(btnbutton);
+		contentPane.add(btnqlnhanvien);
 		
-		btnbutton1 = new JButton("Quản Lí Bệnh Nhân");
-		btnbutton1.setIcon(new ImageIcon("travel_management.png"));
-		btnbutton1.setBounds(395, 128, 275, 100);
-		btnbutton1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnqlbenhnhan = new JButton("Quản Lí Bệnh Nhân");
+		btnqlbenhnhan.setIcon(new ImageIcon("travel_management.png"));
+		btnqlbenhnhan.setBounds(395, 128, 275, 100);
+		btnqlbenhnhan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	
-		contentPane.add(btnbutton1);
+		contentPane.add(btnqlbenhnhan);
 		
-		btnbutton3 = new JButton("Lập Phiếu Khám");
-		btnbutton3.setIcon(new ImageIcon("default_document.png"));
-		btnbutton3.setBounds(395, 296, 275, 100);
-		btnbutton3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		contentPane.add(btnbutton3);
+		btnlapphieukham = new JButton("Lập Phiếu Khám");
+		btnlapphieukham.setIcon(new ImageIcon("default_document.png"));
+		btnlapphieukham.setBounds(395, 296, 275, 100);
+		btnlapphieukham.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		contentPane.add(btnlapphieukham);
 		
-		btnbutton4 = new JButton("Cập Nhật Phiếu Khám");
-		btnbutton4.setIcon(new ImageIcon("default_document.png"));
-		btnbutton4.setBounds(67, 296, 275, 100);
-		btnbutton4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		contentPane.add(btnbutton4);
+		btncapnhatphieukham = new JButton("Cập Nhật Phiếu Khám");
+		btncapnhatphieukham.setIcon(new ImageIcon("default_document.png"));
+		btncapnhatphieukham.setBounds(67, 296, 275, 100);
+		btncapnhatphieukham.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		contentPane.add(btncapnhatphieukham);
 		
-		btnbutton5 = new JButton("Đổi Mật Khẩu");
-		btnbutton5.setIcon(new ImageIcon("advancedsettings.png"));
-		btnbutton5.setBounds(735, 296, 275, 100);
-		btnbutton5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		contentPane.add(btnbutton5);
+		btndoimatkhau = new JButton("Đổi Mật Khẩu");
+		btndoimatkhau.setIcon(new ImageIcon("advancedsettings.png"));
+		btndoimatkhau.setBounds(735, 296, 275, 100);
+		btndoimatkhau.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		contentPane.add(btndoimatkhau);
 		
 		JLabel lblTen = new JLabel();
 		lblTen.setBounds(973, 53, 144, 29);
@@ -144,11 +145,11 @@ public class GUIChucNang extends JFrame implements ActionListener{
 		contentPane.add(lblTen);
 		
 		
-		btnxhd = new JButton("Lập Phiếu Dịch Vụ");
-		btnxhd.setIcon(new ImageIcon("efault_document.png"));
-		btnxhd.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnxhd.setBounds(735, 128, 275, 100);
-		contentPane.add(btnxhd);
+		btnlapphieudichvu = new JButton("Lập Phiếu Dịch Vụ");
+		btnlapphieudichvu.setIcon(new ImageIcon("default_document.png"));
+		btnlapphieudichvu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnlapphieudichvu.setBounds(735, 128, 275, 100);
+		contentPane.add(btnlapphieudichvu);
 		
 		lblChucVu = new JLabel();
 		lblChucVu.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -156,14 +157,55 @@ public class GUIChucNang extends JFrame implements ActionListener{
 		lblChucVu.setText(mTaiKhoan.getRole().getName());
 		contentPane.add(lblChucVu);
 		
-		btnbutton5.addActionListener(this);
-		btnbutton.addActionListener(this);
-		btnbutton4.addActionListener(this);
-		btnbutton3.addActionListener(this);
-		btnbutton1.addActionListener(this);
-		btnxhd.addActionListener(this);
+		btndatlichkham = new JButton("Đặt lịch khám");
+		btndatlichkham.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btndatlichkham.setBounds(67, 436, 275, 100);
+		btndatlichkham.setIcon(new ImageIcon("default_document.png"));
+		contentPane.add(btndatlichkham);
+		
+		btnLapHoaDon = new JButton("Lập hóa đơn");
+		btnLapHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLapHoaDon.setBounds(395, 436, 275, 100);
+		btnLapHoaDon.setIcon(new ImageIcon("default_document.png"));
+		contentPane.add(btnLapHoaDon);
+		
+		btndangxuat = new JButton("Đăng xuất");
+		btndangxuat.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btndangxuat.setBounds(735, 436, 275, 100);
+		btndangxuat.setIcon(new ImageIcon("default_document.png"));
+		contentPane.add(btndangxuat);
+		
+		btndoimatkhau.addActionListener(this);
+		btnqlnhanvien.addActionListener(this);
+		btncapnhatphieukham.addActionListener(this);
+		btnlapphieukham.addActionListener(this);
+		btnqlbenhnhan.addActionListener(this);
+		btndatlichkham.addActionListener(this);
+		btnLapHoaDon.addActionListener(this);
+		btnlapphieudichvu.addActionListener(this);
+		btndangxuat.addActionListener(this);
 		mntmdangXuat.addActionListener(this);
 		mntmThoat.addActionListener(this);
+		
+		if(mNhanVien.getTaiKhoan().getRole().getName().equals("Bác Sỹ")) {
+			btnqlnhanvien.setEnabled(false);
+			btndatlichkham.setEnabled(false);
+			btnLapHoaDon.setEnabled(false);
+		}else if (mNhanVien.getTaiKhoan().getRole().getName().equals("Quản Lý"))
+		{
+			btncapnhatphieukham.setEnabled(false);
+			btndatlichkham.setEnabled(false);
+			btnLapHoaDon.setEnabled(false);
+			btnlapphieudichvu.setEnabled(false);
+			btnlapphieukham.setEnabled(false);
+			btnqlbenhnhan.setEnabled(false);
+		}else if (mNhanVien.getTaiKhoan().getRole().getName().equals("Nhân Viên Tiếp Tân"))
+		{
+			btncapnhatphieukham.setEnabled(false);
+			btnlapphieudichvu.setEnabled(false);
+			btnlapphieukham.setEnabled(false);
+			btnqlnhanvien.setEnabled(false);
+		}
 		
 	}
 	
@@ -172,7 +214,7 @@ public class GUIChucNang extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object o=e.getSource();
-		 if(o==btnbutton1)
+		 if(o==btnqlbenhnhan)
 		{
 			dispose();
 			GUIThongTinBenhNhan ft= new GUIThongTinBenhNhan(mTaiKhoan,mNhanVien);
@@ -184,35 +226,53 @@ public class GUIChucNang extends JFrame implements ActionListener{
 			 GUIDangNhap dn= new GUIDangNhap();
 			 dn.setVisible(true);
 		 }
-		 if(o==btnbutton5) 
+		 if(o==btndoimatkhau) 
 		 {
 			 dispose();
 			 GUIDoiMatKhau dmk= new GUIDoiMatKhau(mTaiKhoan,mNhanVien);
 			 dmk.setVisible(true);
 		 }
-		 if(o==btnbutton) 
+		 if(o==btnqlnhanvien) 
 		 {
 			 dispose();
 			 GUIThongTinNhanVien nv= new GUIThongTinNhanVien(mTaiKhoan,mNhanVien);
 			 nv.setVisible(true);
 		 }
-		 if(o==btnbutton3) 
+		 if(o==btnlapphieukham) 
 		 {
 			 dispose();
-			 GUIPhieuKhamBenh nv= new GUIPhieuKhamBenh(mTaiKhoan,mNhanVien);
-			 nv.setVisible(true);
+			 GUIDanhSachKhamBenh dskb= new GUIDanhSachKhamBenh(mTaiKhoan,mNhanVien);
+			 dskb.setVisible(true);
 		 }
-		 if(o==btnbutton4) 
+		 if(o==btncapnhatphieukham) 
 		 {
 			 dispose();
 			 GUICapNhatPhieuKham cnpk= new GUICapNhatPhieuKham(mTaiKhoan,mNhanVien);
 			 cnpk.setVisible(true);
 		 }
-		 if(o==btnxhd) 
+		 if(o==btnlapphieudichvu) 
 		 {
 			 dispose();
 			 GUIPhieuDichVu dv= new GUIPhieuDichVu(mTaiKhoan,mNhanVien);
 			 dv.setVisible(true);
 		 }
+		 if(o==btndatlichkham) 
+		 {
+			 dispose();
+			 GUIDatLichKham dl= new GUIDatLichKham(mTaiKhoan,mNhanVien);
+			 dl.setVisible(true);
+		 }
+		 if(o==btnLapHoaDon) 
+		 {
+			 dispose();
+			 GUIHoaDon hd= new GUIHoaDon(mTaiKhoan,mNhanVien);
+			 hd.setVisible(true);
+		 }
+		 if(o==btndangxuat) {
+			 dispose();
+			 GUIDangNhap dn = new GUIDangNhap();
+			 dn.setVisible(true);
+		 }
+		
 	}
 }

@@ -189,8 +189,8 @@ public class PhieuDichVuService {
 
 		return bn;
 	}
-	public  List<DichVu>  GetAllDichVuByPhieuKham(Long id) throws IOException {
-		List<DichVu>getall=new ArrayList<>();
+	public  List<PhieuDichVu>  GetAllDichVuByPhieuKham(Long id) throws IOException {
+		List<PhieuDichVu>getall=new ArrayList<>();
 	    URL urlForGetRequest = new URL(GET_ALL_BY_PHIEU_KHAM+"/"+id);
 	    String readLine = null;
 	    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -212,7 +212,7 @@ public class PhieuDichVuService {
 	        		    .create();
 		        JsonParser parser = new JsonParser();
 		        JsonArray object = (JsonArray) parser.parse(response);// response will be the json String
-		        DichVu[] dichvuList = gson.fromJson(object, DichVu[].class);
+		        PhieuDichVu[] dichvuList = gson.fromJson(object, PhieuDichVu[].class);
 		        	
 		        for(int i=0;i<dichvuList.length;i++)
 		        	getall.add(dichvuList[i]);

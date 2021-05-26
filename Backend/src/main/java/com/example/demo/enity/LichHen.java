@@ -3,13 +3,13 @@ package com.example.demo.enity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 public class LichHen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long maLichHen;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -18,7 +18,11 @@ public class LichHen {
     private String trieuChung;
     @Column(name = "GhiChu")
     private String ghiChu;
-   // private boolean hinhThuc;
+
+    private String trangThai;
+    @NotNull
+    private boolean hinhThuc;
+
     @ManyToOne
     @JoinColumn
     private BenhNhan benhnhan;
@@ -27,13 +31,21 @@ public class LichHen {
     @JoinColumn
     private NhanVien nhanvien;
 
-//    public boolean isHinhThuc() {
-//        return hinhThuc;
-//    }
-//
-//    public void setHinhThuc(boolean hinhThuc) {
-//        this.hinhThuc = hinhThuc;
-//    }
+    public boolean isHinhThuc() {
+        return hinhThuc;
+    }
+
+    public void setHinhThuc(boolean hinhThuc) {
+        this.hinhThuc = hinhThuc;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
 
     public Long getMaLichHen() {
         return maLichHen;
@@ -75,13 +87,6 @@ public class LichHen {
         this.benhnhan = benhNhan;
     }
 
-    public BenhNhan getBenhnhan() {
-        return benhnhan;
-    }
-
-    public void setBenhnhan(BenhNhan benhnhan) {
-        this.benhnhan = benhnhan;
-    }
 
     public NhanVien getNhanvien() {
         return nhanvien;

@@ -6,18 +6,11 @@ import java.util.Objects;
 public class TaiKhoan implements Serializable {
 	private String username;
 	private String password;
-	private boolean enabled;
 
 
 	private Role role;
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 
 	public Role getRole() {
 		return role;

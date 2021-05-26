@@ -1,5 +1,7 @@
 package com.example.demo.enity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,17 @@ public class DichVu {
 	private String ghiChu;
 	@NotNull
 	private double donGia;
+	@OneToOne
+	@JsonIgnore
+	private PhieuDichVu phieuDichVu;
+
+	public PhieuDichVu getPhieuDichVu() {
+		return phieuDichVu;
+	}
+
+	public void setPhieuDichVu(PhieuDichVu phieuDichVu) {
+		this.phieuDichVu = phieuDichVu;
+	}
 
 	public long getId() {
 		return id;

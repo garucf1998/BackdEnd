@@ -435,7 +435,7 @@ public class GUIThongTinNhanVien extends JFrame implements MouseListener,ActionL
 		btnsua.setEnabled(false);
 		comboBoxRole.setEnabled(false);
 		
-		
+		updateTableData();
 		
 	}
 
@@ -694,16 +694,19 @@ public class GUIThongTinNhanVien extends JFrame implements MouseListener,ActionL
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (NhanVien nv : list) {
-			
-			String gioitinh="";
-			if(nv.isGioiTinh()){
-				gioitinh="Nam";
+		if(list.get(0)!=null)
+		{
+			for (NhanVien nv : list) {
+				
+				String gioitinh="";
+				if(nv.isGioiTinh()){
+					gioitinh="Nam";
+				}
+				else
+					gioitinh="Nữ";
+				String[] rowdata = {String.valueOf(nv.getId()).toString(),nv.getTen(),gioitinh,nv.getSoDienThoai(),nv.getCmnd(),nv.getDiaChi(),control.doichuoitungay(nv.getNgaySinh()),nv.getEmail(),nv.getTaiKhoan().getRole().getName()};
+				datamodel.addRow(rowdata);
 			}
-			else
-				gioitinh="Nữ";
-			String[] rowdata = {String.valueOf(nv.getId()).toString(),nv.getTen(),gioitinh,nv.getSoDienThoai(),nv.getCmnd(),nv.getDiaChi(),control.doichuoitungay(nv.getNgaySinh()),nv.getEmail(),nv.getTaiKhoan().getRole().getName()};
-			datamodel.addRow(rowdata);
 		}
 	}
 	public void removeTable() {
