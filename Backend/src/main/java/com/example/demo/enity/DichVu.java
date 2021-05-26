@@ -18,17 +18,6 @@ public class DichVu {
 	private String ghiChu;
 	@NotNull
 	private double donGia;
-	@OneToOne
-	@JsonIgnore
-	private PhieuDichVu phieuDichVu;
-
-	public PhieuDichVu getPhieuDichVu() {
-		return phieuDichVu;
-	}
-
-	public void setPhieuDichVu(PhieuDichVu phieuDichVu) {
-		this.phieuDichVu = phieuDichVu;
-	}
 
 	public long getId() {
 		return id;
