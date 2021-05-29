@@ -22,8 +22,8 @@ public class ChiTietDonThuoc {
     private String ghiChu;
     @NotNull
     private Float giaTien;
-    @NotNull
-    @ManyToOne
+
+    @ManyToOne()
     @JoinColumn
     private DonThuoc donthuoc;
     public Long getId() {

@@ -2,6 +2,7 @@ package com.example.demo.enity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,7 +24,7 @@ public class DonThuoc {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngayLapDon;
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "donthuoc")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "donthuoc")
 	@JsonIgnore
 	private List<ChiTietDonThuoc> dsChiTietDonThuoc;
 

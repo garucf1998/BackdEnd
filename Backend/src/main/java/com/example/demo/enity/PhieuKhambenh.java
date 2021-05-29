@@ -33,7 +33,7 @@ public class PhieuKhambenh {
     @JoinColumn
     private DonThuoc donthuoc;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "phieukhambenh")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "phieukhambenh")
     @JsonIgnore
     private List<PhieuDichVu> dsphieudichvu;
 
