@@ -20,7 +20,6 @@ public class LichHen {
     private String ghiChu;
 
     private String trangThai;
-    @NotNull
     private boolean hinhThuc;
 
     @ManyToOne

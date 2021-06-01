@@ -37,9 +37,8 @@ public class ChiTietDonThuocController {
     public List<ChiTietDonThuoc> getallbydonthuoc(@PathVariable("id")Long id){
         return chiTietDonThuocRepository.findByIDDonThuoc(id);
     }
-
     @GetMapping("/getallbybenhnhan/{id}")
     public List<ChiTietDonThuoc> getallbybenhnhan(@PathVariable("id")Long id){
-        return chiTietDonThuocRepository.findByIDBN(id);
+        return chiTietDonThuocRepository.findByIDBenhNhan(id);
     }
 }

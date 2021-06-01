@@ -22,6 +22,6 @@ public interface LichHenRepository extends JpaRepository<LichHen,Long> {
     @Query(value = "select * from lich_hen  where benhnhan_id like ?1",nativeQuery = true)
     List<LichHen> findLichHenByBN( Long id);
 
-    @Query(value = "select * from lich_hen  where thoi_gian like ?1%",nativeQuery = true)
-    List<LichHen> findLichHenByDate( String date);
+    @Query(value = "select * from lich_hen  where thoi_gian like ?1% ",nativeQuery = true)
+    List<LichHen> findLichHenByDate(String date);
 }

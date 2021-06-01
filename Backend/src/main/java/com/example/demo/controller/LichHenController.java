@@ -32,11 +32,6 @@ public class LichHenController {
         return  lichHenRepository.findListBN(dates,id);
     }
 
-    @GetMapping("/getall")
-    public List<LichHen> GetAll(){
-        return lichHenRepository.findAll();
-    }
-
     @GetMapping("/getlichhenbybn/{id}")
     public List<LichHen> getLichHenByBN(@PathVariable(value = "id") Long id)  {
 
@@ -47,6 +42,11 @@ public class LichHenController {
     public List<LichHen> getLichHenByDate(@PathVariable(value = "date") String date)  {
 
         return  lichHenRepository.findLichHenByDate(date);
+    }
+
+    @GetMapping("/getall")
+    public List<LichHen> GetAll(){
+        return lichHenRepository.findAll();
     }
 
     @GetMapping("/ktralichhennv/{date}/{id}")
@@ -85,9 +85,6 @@ public class LichHenController {
         LichHen lichHen =lichHenRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
         lichHen.setTrangThai(lichhendetail.getTrangThai());
-        lichHen.setNhanvien(lichhendetail.getNhanvien());
-        lichHen.setGhiChu(lichhendetail.getGhiChu());
-        lichHen.setTrieuChung(lichhendetail.getTrieuChung());
 
         final LichHen updated = lichHenRepository.save(lichHen);
         return ResponseEntity.ok(updated);

@@ -14,9 +14,7 @@ public class DichVu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@NotNull
 	private String ghiChu;
-	@NotNull
 	private double donGia;
 
 	public long getId() {

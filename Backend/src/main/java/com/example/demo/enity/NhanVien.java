@@ -14,7 +14,6 @@ import java.util.List;
 public class NhanVien {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private long id;
 	@NotNull
 	private String ten;

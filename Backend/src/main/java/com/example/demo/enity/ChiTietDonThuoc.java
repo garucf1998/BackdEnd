@@ -14,16 +14,11 @@ public class ChiTietDonThuoc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @NotNull
     private Thuoc thuoc;
-    @NotNull
     private int soLuong;
-    @NotNull
     private String ghiChu;
-    @NotNull
     private Float giaTien;
-
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn
     private DonThuoc donthuoc;
     public Long getId() {
