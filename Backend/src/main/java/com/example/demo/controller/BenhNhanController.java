@@ -53,7 +53,7 @@ public class BenhNhanController {
     public ResponseEntity<BenhNhan> getBenhNhanById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         BenhNhan benhNhan = benhnhanRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy bệnh nhân có id : " + id));
         return ResponseEntity.ok().body(benhNhan);
     }
 
@@ -61,7 +61,7 @@ public class BenhNhanController {
     public ResponseEntity<BenhNhan> updateNguoiDung(@PathVariable(value = "id") Long id,
                                                     @RequestBody BenhNhan benhnhandetail) throws ResourceNotFoundException {
         BenhNhan benhNhan =benhnhanRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Cập nhật thất bại !"));
         benhNhan.setGioiTinh(benhnhandetail.isGioiTinh());
         benhNhan.setTen(benhnhandetail.getTen());
         benhNhan.setCmnd(benhnhandetail.getCmnd());
@@ -76,7 +76,7 @@ public class BenhNhanController {
     public Map<String, Boolean> delete( @PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         BenhNhan benhNhan = benhnhanRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nguoi dung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Xóa không thành công bệnh nhân có id : " + id));
 
         benhnhanRepository.delete(benhNhan);
         Map<String, Boolean> response = new HashMap<>();

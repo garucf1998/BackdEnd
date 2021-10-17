@@ -27,7 +27,7 @@ public class PhieuDichVuController{
     public ResponseEntity<PhieuDichVu> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         PhieuDichVu phieuDichVu = dichVuRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy phiếu dịch vụ có id : " + id));
         return ResponseEntity.ok().body(phieuDichVu);
     }
 
@@ -35,7 +35,7 @@ public class PhieuDichVuController{
     public ResponseEntity<PhieuDichVu> update(@PathVariable(value = "id") Long id,
                                                 @RequestBody PhieuDichVu phieuDichVuDetail) throws ResourceNotFoundException {
         PhieuDichVu phieuDichVu =dichVuRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Cập nhật thất bại phiếu dịch vụ có id : " + id));
         phieuDichVu.setNgayTaoPhieu(phieuDichVuDetail.getNgayTaoPhieu());
         phieuDichVu.setDichVu(phieuDichVuDetail.getDichVu());
         phieuDichVu.setGhiChu(phieuDichVuDetail.getGhiChu());
@@ -50,14 +50,14 @@ public class PhieuDichVuController{
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         PhieuDichVu phieuDichVu = dichVuRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nguoi dung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Xóa thất bại phiếu dịch vụ có id : " + id));
 
         dichVuRepository.delete(phieuDichVu);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+ 
     @PostMapping("/insert")
     public PhieuDichVu them( @RequestBody PhieuDichVu phieuDichVu) {
         return dichVuRepository.save(phieuDichVu);

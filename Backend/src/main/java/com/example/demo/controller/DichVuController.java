@@ -33,7 +33,7 @@ public class DichVuController {
     public ResponseEntity<DichVu> getBenhNhanById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         DichVu dichVu = dichVuRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Dich vu not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy dịch vụ có id : " + id));
         return ResponseEntity.ok().body(dichVu);
     }
 }

@@ -27,7 +27,7 @@ public class TaiKhoanController {
     public TaiKhoan getTaiKhoanById(@PathVariable(value = "id") String id)
             throws ResourceNotFoundException {
         TaiKhoan taiKhoan = taiKhoantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tai khoan not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy tài khoản có id là : " + id));
         return taiKhoan;
     }
 
@@ -35,7 +35,7 @@ public class TaiKhoanController {
     public ResponseEntity<TaiKhoan> updateTaiKhoan(@PathVariable(value = "id") String id,
                                                    @RequestBody TaiKhoan taiKhoanDetais) throws ResourceNotFoundException {
         TaiKhoan taiKhoan = taiKhoantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tai khoan not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("TCập nhật thất bại tài khoản có id : " + id));
 
         taiKhoan.setUsername(taiKhoanDetais.getUsername());
         taiKhoan.setPassword(taiKhoanDetais.getPassword());
@@ -48,7 +48,7 @@ public class TaiKhoanController {
     public Map<String, Boolean> deleteTaiKhoan(@PathVariable(value = "id") String id)
             throws ResourceNotFoundException {
         TaiKhoan taiKhoan = taiKhoantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tai khoan not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Xóa thất bại tài khoản có id : " + id));
 
         taiKhoantRepository.delete(taiKhoan);
         Map<String, Boolean> response = new HashMap<>();

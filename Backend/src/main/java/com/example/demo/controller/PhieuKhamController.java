@@ -34,7 +34,7 @@ public class PhieuKhamController {
     public ResponseEntity<PhieuKhambenh> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         PhieuKhambenh phieuKhambenh = phieuKhamRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy phiếu khám bệnh có id : " + id));
         return ResponseEntity.ok().body(phieuKhambenh);
     }
 
@@ -43,7 +43,7 @@ public class PhieuKhamController {
     public ResponseEntity<PhieuKhambenh> update(@PathVariable(value = "id") Long id,
                                                     @RequestBody PhieuKhambenh phieukhambenhdetail) throws ResourceNotFoundException {
         PhieuKhambenh phieuKhambenh =phieuKhamRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Cập nhật thất bại phiếu khám bệnh có id :" + id));
         phieuKhambenh.setNgayLapPhieu(phieuKhambenh.getNgayLapPhieu());
         phieuKhambenh.setChanDoan(phieukhambenhdetail.getChanDoan());
         phieuKhambenh.setNhanvien(phieukhambenhdetail.getNhanvien());
@@ -56,12 +56,12 @@ public class PhieuKhamController {
         final PhieuKhambenh updated = phieuKhamRepository.save(phieuKhambenh);
         return ResponseEntity.ok(updated);
     }
-
+ 
     @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         PhieuKhambenh phieuKhambenh = phieuKhamRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nguoi dung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Xóa thất bại phiếu khám bệnh có id : " + id));
 
         phieuKhamRepository.delete(phieuKhambenh);
         Map<String, Boolean> response = new HashMap<>();

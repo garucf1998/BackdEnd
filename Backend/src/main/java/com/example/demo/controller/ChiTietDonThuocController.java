@@ -26,7 +26,7 @@ public class ChiTietDonThuocController {
     public ResponseEntity<ChiTietDonThuoc> getThuocById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         ChiTietDonThuoc chiTietDonThuoc = chiTietDonThuocRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Don thuoc not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy chi tiết đơn thuốc có id : " + id));
         return ResponseEntity.ok().body(chiTietDonThuoc);
     }
     @PostMapping("/insert")

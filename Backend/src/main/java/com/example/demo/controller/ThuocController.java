@@ -25,7 +25,7 @@ public class ThuocController {
     public ResponseEntity<Thuoc> getThuocById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         Thuoc thuoc = thuocRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Thuoc not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy thuốc có id : " + id));
         return ResponseEntity.ok().body(thuoc);
     }
     @GetMapping("/getbytenthuoc/{tenthuoc}")

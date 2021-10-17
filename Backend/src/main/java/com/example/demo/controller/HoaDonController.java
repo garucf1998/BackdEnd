@@ -26,7 +26,7 @@ public class HoaDonController {
     public ResponseEntity<HoaDon> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         HoaDon hoaDon = hoaDonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nhan vien not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy hóa đơn có id : " + id));
         return ResponseEntity.ok().body(hoaDon);
     }
 
@@ -44,7 +44,7 @@ public class HoaDonController {
     public ResponseEntity<HoaDon> update(@PathVariable(value = "id") Long id,
                                            @RequestBody HoaDon hoadondetail) throws ResourceNotFoundException {
         HoaDon hoaDon =hoaDonRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("hoadon not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Cập nhật thất bại hóa đơn có id : " + id));
         hoaDon.setTrangThai(hoadondetail.isTrangThai());
 
         final HoaDon updated = hoaDonRepository.save(hoaDon);

@@ -21,7 +21,7 @@ public class RoleController {
     public ResponseEntity<Role> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         Role role = roleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy role có id : " + id));
         return ResponseEntity.ok().body(role);
     }
     @GetMapping("/getall")
@@ -34,3 +34,4 @@ public class RoleController {
     }
 
 }
+ 

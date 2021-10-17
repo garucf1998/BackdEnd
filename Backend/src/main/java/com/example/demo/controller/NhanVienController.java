@@ -55,7 +55,7 @@ public class NhanVienController {
     public ResponseEntity<NhanVien> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         NhanVien nhanVien = nhanVienRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nhan vien not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy nhân viên có id : " + id));
         return ResponseEntity.ok().body(nhanVien);
     }
     @GetMapping("/getbytaikhoan/{taikhoan}")
@@ -68,7 +68,7 @@ public class NhanVienController {
     public ResponseEntity<NhanVien> update(@PathVariable(value = "id") Long id,
                                                     @RequestBody NhanVien nhanviendetail) throws ResourceNotFoundException {
         NhanVien nhanVien =nhanVienRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("nguoidung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Cập nhật thất bại nhân viên có id : " + id));
         nhanVien.setGioiTinh(nhanviendetail.isGioiTinh());
         nhanVien.setTen(nhanviendetail.getTen());
         nhanVien.setCmnd(nhanviendetail.getCmnd());
@@ -77,13 +77,13 @@ public class NhanVienController {
         nhanVien.setSoDienThoai(nhanviendetail.getSoDienThoai());
         final NhanVien updated = nhanVienRepository.save(nhanVien);
         return ResponseEntity.ok(updated);
-    }
+    } 
 
     @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> delete( @PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         NhanVien nhanVien = nhanVienRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Nguoi dung not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Xóa thất bại nhân viên có id : " + id));
 
         nhanVienRepository.delete(nhanVien);
         Map<String, Boolean> response = new HashMap<>();
