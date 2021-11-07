@@ -77,7 +77,7 @@ public class NhanVienController {
         nhanVien.setSoDienThoai(nhanviendetail.getSoDienThoai());
         final NhanVien updated = nhanVienRepository.save(nhanVien);
         return ResponseEntity.ok(updated);
-    } 
+    }  
 
     @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> delete( @PathVariable(value = "id") Long id)

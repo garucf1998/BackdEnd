@@ -36,10 +36,10 @@ public class NhanVien {
 	@OneToOne
 	@JoinColumn
 	private TaiKhoan taiKhoan;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanvien")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanVien")
 	@JsonIgnore
 	private List<PhieuKhambenh> dsphieukhambenh;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanvien")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanVien")
 	@JsonIgnore
 	private List <LichHen> dslichhen;
 

@@ -28,7 +28,7 @@ public class HoaDonController {
         HoaDon hoaDon = hoaDonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy hóa đơn có id : " + id));
         return ResponseEntity.ok().body(hoaDon);
-    }
+    } 
 
     @PostMapping("/insert")
     public HoaDon them(@RequestBody HoaDon hoaDon) {

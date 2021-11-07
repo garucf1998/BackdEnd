@@ -56,7 +56,7 @@ public class PhieuKhamController {
         final PhieuKhambenh updated = phieuKhamRepository.save(phieuKhambenh);
         return ResponseEntity.ok(updated);
     }
- 
+  
     @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {

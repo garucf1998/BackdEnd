@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface PhieuKhamRepository extends JpaRepository<PhieuKhambenh,Long> {
-    @Query(value = "select * from phieu_khambenh inner join benh_nhan on benh_nhan.id =phieu_khambenh.benhnhan_id where benh_nhan.id like ?1",nativeQuery = true)
+    @Query(value = "select * from phieu_khambenh inner join benh_nhan on benh_nhan.id =phieu_khambenh.benh_nhan_id where benh_nhan.id like ?1",nativeQuery = true)
     List<PhieuKhambenh> findPhieuKhamByIdBenhNhan(Long id);
 }

@@ -23,11 +23,11 @@ public class PhieuKhambenh {
 
     @ManyToOne
     @JoinColumn
-    private NhanVien nhanvien;
+    private NhanVien nhanVien;
 
     @ManyToOne
     @JoinColumn
-    private BenhNhan benhnhan;
+    private BenhNhan benhNhan;
 
     @OneToOne
     @JoinColumn
@@ -69,19 +69,19 @@ public class PhieuKhambenh {
     }
 
     public NhanVien getNhanvien() {
-        return nhanvien;
+        return nhanVien;
     }
 
-    public void setNhanvien(NhanVien nhanvien) {
-        this.nhanvien = nhanvien;
+    public void setNhanvien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
     }
 
     public BenhNhan getBenhnhan() {
-        return benhnhan;
+        return benhNhan;
     }
 
-    public void setBenhnhan(BenhNhan benhnhan) {
-        this.benhnhan = benhnhan;
+    public void setBenhnhan(BenhNhan benhNhan) {
+        this.benhNhan = benhNhan;
     }
 
     public DonThuoc getDonthuoc() {
