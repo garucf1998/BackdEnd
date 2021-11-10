@@ -26,9 +26,7 @@ public class LichHen {
     @JoinColumn
     private BenhNhan benhNhan;
 
-    @ManyToOne
-    @JoinColumn
-    private NhanVien nhanVien;
+    
 
     public boolean isHinhThuc() {
         return hinhThuc;
@@ -84,15 +82,6 @@ public class LichHen {
 
     public void setBenhNhan(BenhNhan benhNhan) {
         this.benhNhan = benhNhan;
-    }
-   
-
-    public NhanVien getNhanvien() {
-        return nhanVien;
-    }
-
-    public void setNhanvien(NhanVien nhanVien) {
-        this.nhanVien = nhanVien;
     }
 
     public LichHen() {

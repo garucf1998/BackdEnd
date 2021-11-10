@@ -39,9 +39,7 @@ public class NhanVien {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanVien")
 	@JsonIgnore
 	private List<PhieuKhambenh> dsphieukhambenh;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanVien")
-	@JsonIgnore
-	private List <LichHen> dslichhen;
+	
 
 
 	public String getEmail() {
@@ -104,13 +102,7 @@ public class NhanVien {
 		this.dsphieukhambenh = dsphieukhambenh;
 	}
 
-	public List<LichHen> getDslichhen() {
-		return dslichhen;
-	}
-
-	public void setDslichhen(List<LichHen> dslichhen) {
-		this.dslichhen = dslichhen;
-	}
+	
 
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;

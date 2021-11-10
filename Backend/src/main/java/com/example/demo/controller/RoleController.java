@@ -16,7 +16,7 @@ import java.util.List;
 public class RoleController {
     @Autowired
     RoleRepository roleRepository;
-
+ 
     @GetMapping("/getone/{id}")
     public ResponseEntity<Role> getById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {

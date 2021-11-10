@@ -21,11 +21,11 @@ public class LichHenController {
         return lichHenRepository.save(lichHen);
     }
 
-    @GetMapping("/getlichhen/{date}/{id}")
-    public List<String> getLichHen(@PathVariable(value = "date") String dates,@PathVariable(value = "id") Long id)  {
-
-        return  lichHenRepository.findListBN(dates,id);
-    }
+//    @GetMapping("/getlichhen/{date}/{id}")
+//    public List<String> getLichHen(@PathVariable(value = "date") String dates,@PathVariable(value = "id") Long id)  {
+//
+//        return  lichHenRepository.findListBN(dates,id);
+//    }
 
     @GetMapping("/getlichhenbybn/{id}")
     public List<LichHen> getLichHenByBN(@PathVariable(value = "id") Long id)  {
@@ -33,7 +33,7 @@ public class LichHenController {
         return  lichHenRepository.findLichHenByBN(id);
     }
 
-    @GetMapping("/getlichhenbydate/{date}")
+    @GetMapping("/{date}")
     public List<LichHen> getLichHenByDate(@PathVariable(value = "date") String date)  {
 
         return  lichHenRepository.findLichHenByDate(date);
