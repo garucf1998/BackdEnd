@@ -33,7 +33,7 @@ public class LichHenController {
         return  lichHenRepository.findLichHenByBN(id);
     }
 
-    @GetMapping("/{date}")
+    @GetMapping("/getlichhenbydate/{date}")
     public List<LichHen> getLichHenByDate(@PathVariable(value = "date") String date)  {
 
         return  lichHenRepository.findLichHenByDate(date);
@@ -63,7 +63,7 @@ public class LichHenController {
         return ResponseEntity.ok().body(lichHen);
     }
 
-    @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> delete(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         LichHen lichHen = lichHenRepository.findById(id)
