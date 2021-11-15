@@ -31,12 +31,12 @@ public class BenhNhan {
     @JoinColumn
     private TaiKhoan taiKhoan;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "benhNhan")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "benhNhan")
     @JsonIgnore
     private List<PhieuKhambenh> dsphieukhambenh;
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "benhNhan")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "benhNhan")
     @JsonIgnore
     private List<LichHen> dslichhen;
 
