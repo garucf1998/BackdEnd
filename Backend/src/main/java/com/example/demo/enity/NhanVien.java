@@ -36,7 +36,7 @@ public class NhanVien {
 	@OneToOne
 	@JoinColumn
 	private TaiKhoan taiKhoan;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "nhanVien")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "nhanVien")
 	@JsonIgnore
 	private List<PhieuKhambenh> dsphieukhambenh;
 	

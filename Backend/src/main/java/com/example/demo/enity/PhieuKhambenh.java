@@ -40,7 +40,7 @@ public class PhieuKhambenh {
     private Float tienKham;
 
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "phieukhambenh", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "phieukhambenh", cascade = CascadeType.ALL)
     @JsonIgnore
     private HoaDon hoadon;
 
