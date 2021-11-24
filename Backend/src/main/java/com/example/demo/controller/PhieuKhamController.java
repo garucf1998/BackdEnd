@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.enity.BenhNhan;
+import com.example.demo.enity.LichHen;
 import com.example.demo.enity.PhieuKhambenh;
 import com.example.demo.repository.PhieuKhamRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -72,6 +74,11 @@ public class PhieuKhamController {
     @PostMapping(value = "/insert",produces = MediaType.APPLICATION_JSON_VALUE)
     public PhieuKhambenh them(@RequestBody PhieuKhambenh phieuKhambenh) {
         return phieuKhamRepository.save(phieuKhambenh);
+    }
+    
+    @GetMapping("/listBN/{date}")
+    public List<String> listBN(@PathVariable("date") String date){
+        return phieuKhamRepository.findListBN(date);
     }
 
 }

@@ -21,12 +21,6 @@ public class LichHenController {
         return lichHenRepository.save(lichHen);
     }
 
-//    @GetMapping("/getlichhen/{date}/{id}")
-//    public List<String> getLichHen(@PathVariable(value = "date") String dates,@PathVariable(value = "id") Long id)  {
-//
-//        return  lichHenRepository.findListBN(dates,id);
-//    }
-
     @GetMapping("/getlichhenbybn/{id}")
     public List<LichHen> getLichHenByBN(@PathVariable(value = "id") Long id)  {
 
@@ -44,10 +38,7 @@ public class LichHenController {
         return lichHenRepository.findAll();
     }
 
-    @GetMapping("/ktralichhennv/{date}/{id}")
-    public List<LichHen> ktralichhenNV(@PathVariable("date") String date,@PathVariable("id")Long id){
-        return lichHenRepository.findLichHenByDateAndIDNV(date,id);
-    }
+   
 
     @GetMapping("/ktralichhenbn/{date}/{id}")
     public LichHen ktralichhenBN(@PathVariable("date") String date,@PathVariable("id")Long id){
